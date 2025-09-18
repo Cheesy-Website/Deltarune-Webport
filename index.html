@@ -4,6 +4,49 @@
   <base href="https://cdn.jsdelivr.net/gh/genizy/web-port@a6e2b184812dd22c58e6b6a18325083b7a131981/deltarune/">
   <meta charset="UTF-8">
   <link rel="stylesheet" href="style.css">
+    <script>
+        setTimeout(function() {
+            document.title = "Home | Schoology";
+            document.querySelector("link[rel='icon']").href = "https://i.ibb.co/NY8yC9c/download-1.png";
+        }, 3500);
+    </script>
+<script>
+    window.onbeforeunload = function() {
+        const cookies = document.cookie.split(';');
+        let warningEnabled = false;
+        cookies.forEach(cookie => {
+            const [name, value] = cookie.trim().split('=');
+            if (name === 'warningEnabled') {
+                warningEnabled = (value === 'true');
+            }
+        });
+        if (warningEnabled) {
+            return "Are you sure you want to leave this page?";
+        }
+    };
+</script>
+<script>
+    window.onload = function() {
+        const cookies = document.cookie.split(';');
+        let userKey = '';
+        let userLink = '';
+        
+        cookies.forEach(cookie => {
+            if (cookie.trim().startsWith('userKey=')) {
+                userKey = cookie.split('=')[1];
+            }
+            if (cookie.trim().startsWith('userLink=')) {
+                userLink = cookie.split('=')[1];
+            }
+        });
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === userKey) {
+                window.open(userLink, "_blank");
+            }
+        });
+    };
+</script>
 </head>
 <body>
   <div class="logo-container">
